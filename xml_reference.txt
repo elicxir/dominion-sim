@@ -1,0 +1,54 @@
+xml タグ
+
+tags and attributes
+
+<strategy>
+    name : 戦略の名前
+
+<opener>
+    first : 最初のターンで買うカード
+    second : 2ターン目に買うカード
+
+<if>
+条件分岐に用いるタグ
+
+attributes
+
+
+turn
+    value : 現在のターン数
+
+supply
+    empty : サプライの空の山の数
+    $card_name$ : サプライに残っている$card_name$の枚数
+
+hand
+    $card_name$ : 手札にある$card_name$の枚数
+
+deck
+    money : デッキの金銭出力の合計(すべてのカードを場に出した際に獲得できる金額)
+    $card_name$ : デッキ内の$card_name$の枚数
+
+money
+    value : 手札で出力できる金額
+    buy : 手札で出力できる購入権
+
+density
+    money : Money Density(山札から一枚引いたときに得られる金額出力の期待値)
+    $card_name$ : デッキ内の$card_name$の割合
+
+<buy> : $card_name$を購入する 複数のbuyが連続で階層状に与えられているときは順番に買えるだけ買う
+
+
+例
+「サプライに"Witch"が8枚以上あるときWitchを購入する」を表現する
+
+<if supply="Witch>7">
+    <buy>Witch</>
+
+
+「最初の2ターンに銀貨と鍛冶屋を買う」を表現する
+(openerの中にbuyをコストが高い順に並べればよい)
+<opener>
+    <buy>Smithy</>
+    <buy>Silver</>
